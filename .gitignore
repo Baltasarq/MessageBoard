@@ -1,3 +1,6 @@
+# Storage
+dump.rdb
+
 # Config
 instance/
 config.json
