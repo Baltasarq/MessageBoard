@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results</h1>
+    {% if msgs %}
+        <ul>
+        {% for msg in msgs %}
+            <li>{{ msg }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <button onclick="window.location='/search'">Search again</button>
+    <button onclick="window.location='/'">Main</button>
+</body>
+</html>

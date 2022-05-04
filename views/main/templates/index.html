@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MessageBoard</title>
+</head>
+<body>
+    <div id="dvHeader">
+        <table style="width: 100%">
+            <tr>
+                <td>
+                <h1>MessageBoard</h1>
+                </td>
+                <td>
+                    {% if usr %}
+                        <a href="/logout">Logout '{{ usr.email }}'</a>
+                    {% else %}
+                        No user logged in.
+                    {% endif %}
+                </td>
+                <td>
+                    {% if usr %}
+                        <a href="/search">Search</a>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p/>
+    <div id="dvMessagesList">
+        {% if messages_list %}
+            <p><ul>
+            {% for message in messages_list %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul></p>
+        {% else %}
+            <p><b>No messages.</b></p>
+        {% endif %}
+    </div>
+
+    <div id="dvForm">
+        <form action="/save_message" method="post">
+            {% if not usr %}
+                <label for="edEmail">email: </label>
+                <input type="text" name="edEmail" id="edEmail" placeholder="email..."/>
+                <br/>
+                <label for="edPassword">Password: </label>
+                <input type="password" name="edPassword" id="edPassword"/>
+                <br/>
+            {% endif %}
+            <label for="edMessage">Message: </label>
+            <input type="text" name="edMessage" id="edMessage" placeholder="Message..."/>
+            <input type="submit" value="Publicar">
+        </form>
+    </div>
+    <div id="dvFlash" style="font-weight: bold;color: white;background-color: red">
+        {% with messages = get_flashed_messages() %}
+           {% if messages %}
+              <p/>
+              {% for message in messages %}
+                 {{ message }}
+              {% endfor %}
+           {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

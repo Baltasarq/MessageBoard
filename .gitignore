@@ -1,0 +1,7 @@
+# Config
+instance/
+config.json
+
+# Backup files
+*.py~
+*.py.bak
